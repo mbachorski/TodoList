@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TodoList</string>
     <string name="action_settings">Settings</string>
+    <string name="button_save">Save</string>
+    <string name="todo_item_hint">TODO</string>
+    <string name="empty_not_saved">Can not save emty value!</string>
 </resources>
