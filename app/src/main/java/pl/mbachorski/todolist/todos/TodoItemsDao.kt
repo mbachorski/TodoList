@@ -14,6 +14,9 @@ interface TodoItemsDao {
     @Query("Select * from todo_items_table ORDER BY id DESC")
     fun getAll(): LiveData<List<TodoItem>>
 
+    @Query("DELETE FROM todo_items_table WHERE id=:id")
+    suspend fun deleteById(id: Int)
+
     @Query("DELETE FROM todo_items_table")
     suspend fun deleteAll()
 }

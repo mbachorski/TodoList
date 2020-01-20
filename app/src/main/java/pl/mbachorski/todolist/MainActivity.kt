@@ -3,6 +3,7 @@ package pl.mbachorski.todolist
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -12,15 +13,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.main_activity.*
-import pl.mbachorski.roomwordsamplecodelab.TodoItemsListAdapter
 import pl.mbachorski.roomwordsamplecodelab.TodoListViewModel
 import pl.mbachorski.todolist.todos.NewTodoItemActivity
+import pl.mbachorski.todolist.todos.TodoItemsListAdapter
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var todoListViewModel: TodoListViewModel
     private val newTodoItemActivityRequestCode = 12345
+    private val doneClickSubject = PublishSubject.create<Int>()
+    private val disposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +39,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initList() {
+        disposable.addAll(doneClickSubject.subscribe { next ->
+            Log.v("MainActivity", "Clicked id: $next")
+            todoListViewModel.deleteById(next)
+        })
+
         val recyclerView = findViewById<RecyclerView>(R.id.todo_list_recyclerview)
-        val adapter = TodoItemsListAdapter(this)
+        val adapter = TodoItemsListAdapter(this, doneClickSubject)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         todoListViewModel.allTodoItems.observe(this, Observer { todoItems ->
             todoItems?.let { adapter.setTodoItems(it) }
         })
+    }
+
+    override fun onDestroy() {
+        disposable.clear()
+        super.onDestroy()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

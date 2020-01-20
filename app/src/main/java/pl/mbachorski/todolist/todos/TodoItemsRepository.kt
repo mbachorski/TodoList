@@ -7,6 +7,10 @@ class TodoItemsRepository(private val todoItemsDao: TodoItemsDao) {
     // Observed LiveData will notify the observer when the data has changed.
     val allTodoItems: LiveData<List<TodoItem>> = todoItemsDao.getAll()
 
+    suspend fun deleteById(id: Int) {
+        todoItemsDao.deleteById(id)
+    }
+
     suspend fun insert(text: String) {
         todoItemsDao.insert(TodoItem(text))
     }

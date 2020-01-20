@@ -33,4 +33,8 @@ class TodoListViewModel(application: Application) : AndroidViewModel(application
     fun insert(todoText: String) = viewModelScope.launch {
         repository.insert(todoText)
     }
+
+    fun deleteById(id: Int) = viewModelScope.launch {
+        repository.deleteById(id)
+    }
 }
