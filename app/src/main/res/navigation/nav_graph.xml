@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/authenticationFragment"
+        android:name="pl.mbachorski.todolist.AuthenticationFragment"
+        android:label="fragment_authentication"
+        tools:layout="@layout/authentication_fragment" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="pl.mbachorski.todolist.DashboardFragment"
+        android:label="dashboard_fragment"
+        tools:layout="@layout/dashboard_fragment" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="pl.mbachorski.todolist.WelcomeFragment"
+        android:label="WelcomeFragment" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment" />
+    </fragment>
+</navigation>

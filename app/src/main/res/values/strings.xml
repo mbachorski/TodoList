@@ -5,4 +5,5 @@
     <string name="todo_item_hint">TODO</string>
     <string name="empty_not_saved">Can not save emty value!</string>
     <string name="markAsDone">Mark as done.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

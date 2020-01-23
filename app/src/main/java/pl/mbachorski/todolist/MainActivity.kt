@@ -2,6 +2,7 @@ package pl.mbachorski.todolist
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -20,7 +21,8 @@ import pl.mbachorski.roomwordsamplecodelab.TodoListViewModel
 import pl.mbachorski.todolist.todos.NewTodoItemActivity
 import pl.mbachorski.todolist.todos.TodoItemsListAdapter
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    DashboardFragment.OnFragmentInteractionListener {
 
     private lateinit var todoListViewModel: TodoListViewModel
     private val newTodoItemActivityRequestCode = 12345
@@ -81,6 +83,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, NewTodoItemActivity::class.java)
             startActivityForResult(intent, newTodoItemActivityRequestCode)
         }
+    }
+
+    override fun onFragmentInteraction(uri: Uri) {
+        Log.v("MainActivity", "onFragmentInteraction $uri")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
