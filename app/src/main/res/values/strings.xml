@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">TodoList</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
     <string name="button_save">Save</string>
     <string name="todo_item_hint">TODO</string>
     <string name="empty_not_saved">Can not save emty value!</string>
     <string name="markAsDone">Mark as done.</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_button">Login</string>
 </resources>

@@ -1,4 +1,4 @@
-package pl.mbachorski.roomwordsamplecodelab
+package pl.mbachorski.todolist.todos
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

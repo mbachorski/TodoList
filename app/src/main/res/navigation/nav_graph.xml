@@ -9,7 +9,14 @@
         android:id="@+id/authenticationFragment"
         android:name="pl.mbachorski.todolist.AuthenticationFragment"
         android:label="fragment_authentication"
-        tools:layout="@layout/authentication_fragment" />
+        tools:layout="@layout/authentication_fragment">
+        <action
+            android:id="@+id/action_authenticationFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="pl.mbachorski.todolist.DashboardFragment"
@@ -18,12 +25,18 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="pl.mbachorski.todolist.WelcomeFragment"
-        android:label="WelcomeFragment" >
+        android:label="WelcomeFragment">
         <action
             android:id="@+id/action_welcomeFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            app:destination="@id/dashboardFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_welcomeFragment_to_authenticationFragment"
-            app:destination="@id/authenticationFragment" />
+            app:destination="@id/authenticationFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
