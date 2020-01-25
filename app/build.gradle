@@ -88,4 +88,7 @@ dependencies {
 
     // Logs
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Memory leak detection - only in debug builds
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.1'
 }
