@@ -44,9 +44,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // navigation
-    def nav_version = "2.2.0"
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.nav_version"
 
     // Room components
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
@@ -77,4 +76,16 @@ dependencies {
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     // (see https://github.com/ReactiveX/RxJava/releases for latest 2.x.x version)
     implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+
+    // Koin for Android
+    implementation "org.koin:koin-android:$rootProject.koin_version"
+    // Koin for Lifecycle scoping
+    implementation "org.koin:koin-androidx-scope:$rootProject.koin_version"
+    // Koin for Android Architecture ViewModel
+    implementation "org.koin:koin-androidx-viewmodel:$rootProject.koin_version"
+    // Koin for testing
+    testImplementation "org.koin:koin-test:$koin_version"
+
+    // Logs
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }

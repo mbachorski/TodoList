@@ -1,15 +1,17 @@
 package pl.mbachorski.todolist
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.firebase.ui.auth.AuthUI
 import kotlinx.android.synthetic.main.main_activity.*
+import org.koin.android.ext.android.inject
+import pl.mbachorski.todolist.authentication.AuthenticationService
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val authenticationService: AuthenticationService by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +28,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_logout -> {
-                AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener {
-                        // user is now signed out
-                        startActivity(Intent(this@MainActivity, MainActivity::class.java))
-                        finish()
-                    }
+                authenticationService.logout()
                 true
             }
             else -> super.onOptionsItemSelected(item)
