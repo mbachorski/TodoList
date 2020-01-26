@@ -13,17 +13,21 @@ private const val RC_SIGN_IN = 12345
 
 class FirebaseAuthenticationService(private val activity: Activity?) : AuthenticationService {
 
+    override fun isLoggedIn(): Boolean {
+        with(FirebaseAuth.getInstance()) {
+            return this.currentUser != null
+        }
+    }
+
     override fun login(fragment: Fragment) {
         Timber.d("Login with firebase")
-
-        val providers = arrayListOf(
-            AuthUI.IdpConfig.GoogleBuilder().build()
-        )
 
         fragment.startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
+                .setAvailableProviders(
+                    arrayListOf(AuthUI.IdpConfig.GoogleBuilder().build())
+                )
                 .build(),
             RC_SIGN_IN
         )
@@ -31,6 +35,7 @@ class FirebaseAuthenticationService(private val activity: Activity?) : Authentic
 
     override fun logout() {
         Timber.d("Logout with firebase")
+
         activity?.let {
             AuthUI.getInstance()
                 .signOut(activity.applicationContext)
